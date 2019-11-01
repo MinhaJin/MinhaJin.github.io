@@ -9,21 +9,16 @@
       google.charts.load('current', {
         packages: ['corechart']
       });
-      google.charts.setOnLoadCallback(readFile); // (1) when the javascript is read, readFile function is launched first.
-      // (2) file is read, and the data is saved in arrayData
-      // arrayData variable is sent to the function called 'draw'
+      google.charts.setOnLoadCallback(readFile); 
       function readFile() {
         filename = "favorite foods.csv";
         $.get(filename, function(csvString) {
-          // read a .csv file and save the data in arrayData variable
           var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
           // send arrayData to 'draw' function
           draw(arrayData)
         });
       };
       function draw(arrayData) {
-        // (3) convert arrayData into DataTable form
-        // then, the remaining process is same to the previous chart drawing assignments.
         var data2 = new google.visualization.arrayToDataTable(arrayData);
         var options2 = {
           title: 'Favorite Foods of HGU Students',
@@ -37,8 +32,7 @@
             
           slices: {
             1: {offset: 0.3},
-            3: {offset: 0.15},
-            5: {offset: 0.4}            
+            3: {offset: 0.15},     
             },
 
           colors: ['teal', 'green', 'purple', 'navy', 'blue']
