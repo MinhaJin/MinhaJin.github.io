@@ -13,7 +13,7 @@
       // (2) file is read, and the data is saved in arrayData
       // arrayData variable is sent to the function called 'draw'
       function readFile() {
-        filename = "data.csv";
+        filename = "favorite foods.csv";
         $.get(filename, function(csvString) {
           // read a .csv file and save the data in arrayData variable
           var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
@@ -26,7 +26,7 @@
         // then, the remaining process is same to the previous chart drawing assignments.
         var data2 = new google.visualization.arrayToDataTable(arrayData);
         var options2 = {
-          title: 'My Daily Activities',
+          title: 'Favorite Food of HGU Students',
           
           legend: {
             position: 'labeled',
@@ -34,6 +34,8 @@
               fontSize: 20
             }
           },
+
+          colors: ['#faf997','gray','orange','green']
         };
         //var chart1 = new google.visualization.LineChart(document.getElementById('chart_div1'));
         //chart1.draw(data1, options1);
