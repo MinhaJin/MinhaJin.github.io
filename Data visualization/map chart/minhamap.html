@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="jquery-csv.js"></script>
+    
+    <script type="text/javascript">
+      google.charts.load('current', {
+        'packages':['map'],
+        'mapsApiKey': 'AIzaSyCr1qR67dGtn7dPv6e1IazBYYo2f3PVlyE'
+      });
+      google.charts.setOnLoadCallback(readFile);
+      
+      function readFile() {
+        filename = "data3.csv";
+        $.get(filename, function(csvString) {
+          var arrayData = $.csv.toArrays(csvString, {onParseValue: $.csv.hooks.castToScalar});
+          drawChart(arrayData)
+        });
+      };
+      function drawChart(arrayData) {
+        var data = google.visualization.arrayToDataTable(arrayData);
+        var options = {
+          zoomLevel: 12,
+          showTooltip: false,
+          showInfoWindow: false,
+          useMapTypeControl: false,
+          mapType: 'hybrid',
+          mapTypeIds: ['normal', 'terrain', 'satellite', 'hybrid'],
+        };
+        var chart = new google.visualization.Map(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="introduction" style="max-width: 800px; font-family: Verdana, Dotum; margin: auto; padding-bottom: 30px">
+      <h1>Places of death accidents at Busan</h1>
+      <p>date: 2019-12-06</p>
+      <p>name: 진민하 (21500708)</p>
+      <p>Introduction: This chart shows the location of death accidents at Busan in 2018.</p>
+      <p>Data: The data is gathered in Korea Public Data Portal. (https://www.data.go.kr/dataset/15003493/fileData.do)</p>
+      <p>Source code of this page: https://github.com/MinhaJin/MinhaJin.github.io/blob/master/Data%20visualization/map%20chart/Jin%20minha%20hw5.html<p>
+    </div>
+    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
