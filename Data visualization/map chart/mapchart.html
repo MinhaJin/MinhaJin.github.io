@@ -22,10 +22,10 @@
         var data = google.visualization.arrayToDataTable(arrayData);
         var options = {
           zoomLevel: 5,
-          showTooltip: false,
-          showInfoWindow: false,
-          useMapTypeControl: false,
-          mapType: 'hybrid',
+          showTooltip: true,
+          showInfoWindow: true,
+          useMapTypeControl: true,
+          mapType: 'terrain',
           mapTypeIds: ['normal', 'terrain', 'satellite', 'hybrid']
         };
         var chart = new google.visualization.Map(document.getElementById('chart_div'));
